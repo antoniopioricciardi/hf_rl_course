@@ -21,7 +21,7 @@ python -m utils.push_to_hub  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --re
 
 # other tests
 # Download model and save it into the logs/ folder
-!python -m utils.load_from_hub --algo dqn --env BeamRiderNoFrameskip-v4 -orga sb3 -f rl_trained/
+!python -m ../rl-baselines3-zoo/utils.load_from_hub --algo dqn --env BeamRiderNoFrameskip-v4 -orga sb3 -f rl_trained/
 
 # evaluate for 5000 timesteps
 python enjoy.py --algo dqn --env BeamRiderNoFrameskip-v4 -n 5000  -f rl_trained/
