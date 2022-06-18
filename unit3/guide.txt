@@ -1,0 +1,34 @@
+# run these commands into the command line
+git clone https://github.com/DLR-RM/rl-baselines3-zoo
+cd rl-baselines3-zoo/
+pip install -r requirements.txt
+pip install huggingface_sb3
+#change n_timesteps in
+rl-baselines3-zoo/hyperparams/dqn.yml
+python train.py --algo dqn --env SpaceInvadersNoFrameskip-v4  -f logs/
+
+# evaluate:
+python enjoy.py  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --no-render  --n-timesteps 5000  --folder logs/
+
+
+# run
+git config --global credential.helper store
+
+# and then run main.py
+
+# run
+python -m utils.push_to_hub  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --repo-name dqn-SpaceInvadersNoFrameskip-v4 -orga antonioricciardi -f logs/
+
+# other tests
+# Download model and save it into the logs/ folder
+!python -m utils.load_from_hub --algo dqn --env BeamRiderNoFrameskip-v4 -orga sb3 -f rl_trained/
+
+# evaluate for 5000 timesteps
+python enjoy.py --algo dqn --env BeamRiderNoFrameskip-v4 -n 5000  -f rl_trained/
+
+#Here's a list of environments you can try to train your agent with:
+
+# BeamRiderNoFrameskip-v4
+# BreakoutNoFrameskip-v4
+# EnduroNoFrameskip-v4
+# PongNoFrameskip-v4
